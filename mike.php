@@ -1,3 +1,3 @@
 <?php
 
-echo "Mike le roi";
+echo "Mike le roi.";
