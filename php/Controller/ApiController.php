@@ -23,6 +23,10 @@
             }
             $sql = substr($sql,0,-4);
             // $sql = "price BETWEEN 20 AND 100";
+            if ($search == false) {
+                $sql = 1;
+            }
+
             $items = $this->itemsModel->select("*","items",$sql);
             echo json_encode($items);
         }
