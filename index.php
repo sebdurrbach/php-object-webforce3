@@ -67,7 +67,7 @@
 
         }
 
-    }elseif($_SERVER["REQUEST_METHOD"] == "GET"){
+    } elseif($_SERVER["REQUEST_METHOD"] == "GET"){
 
         switch($_SERVER["REQUEST_URI"]){
             case FOLDER:

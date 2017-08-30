@@ -13,21 +13,25 @@
         }
 
         public function searchItem(){
-           $sql = "";
-           if(isset($_POST["price"])){  //$_post[price]=valeur 1 and valeur 2
-               $sql .= "price BETWEEN ".$_POST["price"]. " AND ";
-           }
-           if(isset($_POST["categorie"])){  
-            $sql .=" categories_idcategories = ".$_POST["categorie"]." AND ";
-            
+            $sql = "";
+            $search = false;
+            if(isset($_POST["price"])){  //$_post[price]=valeur 1 and valeur 2
+                $sql .= " price BETWEEN ".$_POST["price"]. " AND ";
+                $search = true;
             }
-            $sql = substr($sql,0,-4);
+            if(isset($_POST["categorie"])){  
+                $sql .=" categories_idcategories = ".$_POST["categorie"]." AND ";
+                $search = true;
+            }
+
             // $sql = "price BETWEEN 20 AND 100";
             if ($search == false) {
                 $sql = 1;
+            } else {
+                $sql .= " iditems = items_iditems GROUP BY iditems";
             }
 
-            $items = $this->itemsModel->select("*","items",$sql);
+            $items = $this->itemsModel->select("i.*, p.url","items i, pictures p", $sql);
             echo json_encode($items);
         }
 

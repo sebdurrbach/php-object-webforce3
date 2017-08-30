@@ -41,7 +41,7 @@
                             <?php if(isset($_SESSION["user"]["idclients"])) : ?>
                             <li><a href="#">My Account</a></li>
                             <li><a href="#">My Wishlist</a></li>
-                            <li><a href="http://localhost/Mike/php-object-webforce3/logout">Checkout</a></li>
+                            <li><a href="http://localhost/php-object-webforce3/logout">Checkout</a></li>
                             <?php else: ?>
                             <li><a href="#login-box" class="login-window">Login</a></li>
                             <?php endif; ?>
@@ -55,7 +55,7 @@
 
                         <div id="login-box" class="login-popup">
                             <a href="#" class="close"><img src="images/delete.png" class="btn_close" title="Close Window" alt="Close" /></a>
-                            <form method="post" class="signin" action="http://localhost/Mike/php-object-webforce3/user-register">
+                            <form method="post" class="signin" action="http://localhost/php-object-webforce3/user-register">
                                 <fieldset class="textbox">
                                     <h4 class="login-title">LOGIN </h4>
 
@@ -206,3 +206,6 @@
 
         </header>
         <!-- End Header -->
+        <script>
+            let hostDomaine = "<?php echo HOST.FOLDER; ?>"
+        </script>

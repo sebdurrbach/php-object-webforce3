@@ -6,7 +6,7 @@
 	define('HOST', 'http://localhost');
 	
 	/** Chemin du dossisier site. */
-	define('FOLDER', '/Mike/php-object-webforce3/');
+	define('FOLDER', '/php-object-webforce3/');
 	
 	/** Nombre de separateur. */
 	define('NBSEPARATOR', 3);

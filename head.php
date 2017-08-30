@@ -29,6 +29,7 @@
 	<link rel="shortcut icon" href="<?php echo HOST.FOLDER ?>images/favicon.png" type="image/x-icon">
 	<link rel="icon" href="<?php echo HOST.FOLDER ?>images/favicon.png" type="image/x-icon">
 
-
+	<script type="text/javascript" src="<?php echo HOST.FOLDER ?>js/jquery.min.js"></script>
+	<script type="text/javascript" src="<?php echo HOST.FOLDER ?>js/jquery-ui.js"></script>
 
 </head>
