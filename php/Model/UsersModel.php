@@ -1,47 +1,54 @@
 <?php 
-	require "model.php"; // Charger le fichier php
-
-	class UsersModel extends Model {
+	require "Model.php"; // Charger le fichier php
+	class UsersModel extends Model{
 
 		function __construct() {
 			parent::__construct();
 		}
+
+
+		
+		/*************************Insert*******************************/
 	
 		public function addUser($user = array()){
-			if (!isset($user['firstname'])) {
+			if(!isset($user['firstname'])){
 				return 0;
-			} elseif (!isset($user['lastname'])) {
+			}
+			elseif(!isset($user['lastname'])){
 				return 0;
-			} elseif (!isset($user['email'])) {
+			}
+			elseif(!isset($user['email'])){
 				return 0;
-			} elseif (!isset($user['password'])) {
+			}
+			elseif(!isset($user['password'])){
 				return 0;
 			}
 			
-			 // cryptage du mdp.
 			return $this->insert( $user, "clients" );
 		}
 
 		
 		public function addFavorie($userId, $itemId){
-			if (!is_int($userId)) {
-				return 0;
-			} elseif (!is_int($itemId)) {
+			if(!is_int($userId)){
 				return 0;
 			}
-			
+			elseif(!is_int($itemId)){
+				return 0;
+			}
 			$idFavorie = $this->insert( array("clients_idclients"=>$userId, "items_iditems"=>$itemId), "clients_has_items" );
 		}
 		
 		public function addDelivery($userId, $delivery){
-			if (!is_int($userId)){
+			if(!is_int($userId)){
 				return 0;
 			}
-			if (!isset($delivery['street'])){
+			if(!isset($delivery['street'])){
 				return 0;
-			} elseif (!isset($delivery['city'])){
+			}
+			elseif(!isset($delivery['city'])){
 				return 0;
-			} elseif (!isset($delivery['country'])){
+			}
+			elseif(!isset($delivery['country'])){
 				return 0;
 			}
 			$delivery["clients_idclients"] = $userId;
@@ -49,29 +56,32 @@
 		}
 		
 		public function addOrder($userId, $deliveryId){
-			if (!is_int($userId)) {
-				return 0;
-			} elseif(!is_int($deliveryId)){	
+			if(!is_int($userId)){
 				return 0;
 			}
-			$order = array('num_order'=> $this->randomByAlphNum("User"));
+			elseif(!is_int($deliveryId)){
+				return 0;
+			}
+			$order = array('num_order'=> $this->randomByAlphNum());
 			$order["clients_idclients"] = $userId;
 			$order["delivery_iddelivery"] = $deliveryId;
 			$idOrder = $this->insert( $order, "orders" );
 		}
 
-		public function listenerClientsByEmail($email){
+
+
+		/*************************SELECT*******************************/
 		
+		public function listenerClientsByEmail($email){
 			$user = $this->select("*", "clients", array("email"=> $email));
 			return $user;
 		}
-
+		
 		public function listenerFavorie($userId){
-			if (!is_int($userId)) {
+			if(!is_int($userId)){
 				return 0;
 			}
-
-			$myFavorie = $this->select("*", "listfavorite", array("idclients"=> $userId));
+			$myFavorie = $this->select("*", "listenerfavorie", array("idclients"=> $userId));
 			var_dump($myFavorie);
 		}
 		
@@ -86,10 +96,22 @@
 
 			var_dump($myDelivery);
 		}
+		
+		public function listenerOrder($userId, $dateOrder = null){
+			if(!is_int($userId)){
+				return 0;
+			}
+			if($dateOrder == null)
+				$myOrders = $this->select("*", "orders", array("clients_idclients"=> $userId));
+			else
+				$myOrders = $this->select("*", "orders", array("clients_idclients"=> $userId, "date_order"=> $dateOrder));
 
+			var_dump($myOrders);
+		}
 	}
 
-	$test = new UsersModel();
+	// $test = new UsersModel();
+	// $test->addOrder(1,1);
 	
 	/**
 		-- Phase de test --
@@ -97,7 +119,5 @@
 	$test->addFavorie(1,2);
 	$test->listenerFavorie(1);
 	$test->listenerDelivery(1, "Livraisons" );
-	$test->addOrder(1,1);
 		-- End test --
 	**/
-  
