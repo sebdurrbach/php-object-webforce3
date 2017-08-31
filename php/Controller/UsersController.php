@@ -1,9 +1,7 @@
 <?php 
     require "Controller.php";
-    class UsersController extends Controller{
-        public function __construct(){
-            parent::__construct();
-        }
+	class UsersController extends Controller{
+        
         public function addUser(){
             require "php/Model/UsersModel.php"; // Charger le fichier php
             $redirect = 0; // Define ma variable de redirection

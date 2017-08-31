@@ -41,7 +41,7 @@
                             <?php if(isset($_SESSION["user"]["idclients"])) : ?>
                             <li><a href="#">My Account</a></li>
                             <li><a href="#">My Wishlist</a></li>
-                            <li><a href="http://localhost/php-object-webforce3/logout">Checkout</a></li>
+                            <li><a href="http://localhost/Mike/php-object-webforce3/logout">Checkout</a></li>
                             <?php else: ?>
                             <li><a href="#login-box" class="login-window">Login</a></li>
                             <?php endif; ?>
@@ -55,7 +55,7 @@
 
                         <div id="login-box" class="login-popup">
                             <a href="#" class="close"><img src="images/delete.png" class="btn_close" title="Close Window" alt="Close" /></a>
-                            <form method="post" class="signin" action="http://localhost/php-object-webforce3/user-register">
+                            <form method="post" class="signin" action="http://localhost/Mike/php-object-webforce3/user-register">
                                 <fieldset class="textbox">
                                     <h4 class="login-title">LOGIN </h4>
 
@@ -116,38 +116,10 @@
                         </div>
                         <div class="hover-cart">
 
-                            <div class="hover-box">
-
-                                <a href="#"><img src="images/hover1.png" alt="" class="left-hover"></a>
-                                <div class="hover-details">
-                                    <p>Grey California Dress</p>
-                                    <span>$ 3 199.00</span>
-                                    <div class="quantity">Quantity: 1</div>
-                                </div>
-
-                                <a href="#" class="right-hover"><img src="images/delete.png" alt=""></a>
-
-                                <div class="clear"></div>
-
-                            </div>
-
-                            <div class="hover-box bd0">
-
-                                <img src="images/hover2.png" alt="" class="left-hover">
-                                <div class="hover-details">
-                                    <p>Grey California Dress</p>
-                                    <span>$ 3 199.00</span>
-                                    <div class="quantity">Quantity: 1</div>
-                                </div>
-
-                                <a href="#" class="right-hover"><img src="images/delete.png" alt=""></a>
-
-                                <div class="clear"></div>
-
-                            </div>
+                            
 
                             <div class="subtotal">
-                                Cart Subtotal: <span>$ 4 372</span>
+                                Cart Subtotal: <span>0€</span>
                             </div>
 
                             <button class="viewcard"> View Cart</button>
@@ -169,9 +141,6 @@
                 <nav id="nav">
                     <ul id="navlist" class="sf-menu clearfix">
                         <li class="current"><a href="<?php echo HOST.FOLDER ?>">Home</a>
-                            <ul class="sub-menu">
-                                
-                            </ul>
                         </li>
                         <li><a href="#">Shop</a>
                             <ul class="sub-menu">
@@ -182,19 +151,12 @@
                                 <li><a href="checkout.html"><span>--</span>Checkout</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">Catégories</a>
+                        <li><a href="#">Catégorie</a>
                             <ul class="sub-menu">
                                 <?php
-                                    foreach($this->categories as $categorie){
-                                        echo "<li><a href='about.html'><span>--</span>".$categorie['name']."</a></li>";
-                                    }
+                                    foreach($this->categories as $categorie)
+                                        echo "<li><a href='about.html'><span>--</span>".$categorie["name"]."</a></li>";
                                 ?>
-                            </ul>
-                        </li>
-                        <li><a href="#">Blog</a>
-                            <ul class="sub-menu">
-                                <li><a href="blog.html"><span>--</span>Blog</a></li>
-                                <li><a href="blog-single.html"><span>--</span>Blog Single</a></li>
                             </ul>
                         </li>
                         <li><a href="contact.html">Contact</a></li>

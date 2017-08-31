@@ -1,38 +1,42 @@
 <?php
-    require "Controller.php";
+    require "Controller.php"; // Charger le fichier php
     class ApiController extends Controller{
 
-        public function __construct(){
+        public function  __construct(){
             parent::__construct();
         }
-
+        
         public function detailItem($id){
+
             $picturesItem = $this->itemsModel->listenerPicturesItem($id);
             $reviewsItem = $this->itemsModel->listenerReviewsItem($id);
             echo json_encode( array("pictures" => $picturesItem,"reviews"=>$reviewsItem) );
+        
         }
 
-        public function searchItem(){
+        public function searchItems(){
+
             $sql = "";
-            $search = false;
-            if(isset($_POST["price"])){  //$_post[price]=valeur 1 and valeur 2
-                $sql .= " price BETWEEN ".$_POST["price"]. " AND ";
-                $search = true;
+            $isNotSearch = true;
+
+
+            if(isset($_POST["price"])){ //$_POST["price"] = valeur1 and valeur2
+                $sql .= " price BETWEEN  ".$_POST["price"]." AND ";
+                $isNotSearch = false;
             }
-            if(isset($_POST["categorie"])){  
-                $sql .=" categories_idcategories = ".$_POST["categorie"]." AND ";
-                $search = true;
+            if(isset($_POST["categorie"])){ //$_POST["categorie"] = valeur1
+                $sql .= " categories_idcategories = ".$_POST["categorie"]." AND ";
+                $isNotSearch = false;
             }
 
-            // $sql = "price BETWEEN 20 AND 100";
-            if ($search == false) {
+
+            // Si aucun filtre n'ai demander 
+            if($isNotSearch)
                 $sql = 1;
-            } else {
+            else
                 $sql .= " iditems = items_iditems GROUP BY iditems";
-            }
 
-            $items = $this->itemsModel->select("i.*, p.url","items i, pictures p", $sql);
+            $items = $this->itemsModel->select("i.*, p.url", "items i, pictures p", $sql);
             echo json_encode($items);
         }
-
     }

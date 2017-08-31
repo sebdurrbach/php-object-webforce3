@@ -32,7 +32,7 @@
     
     $id = recoveryLastElemToUrl(); // Appel de function
 
-    // Recuperation du chemin ( de l'url apres le nom de domaine)
+    // Rechuperation du chemin ( de l'url apres le nom de domaine)
     // echo $_SERVER["REQUEST_URI"];die(); // Mike/php-object-webforce3/
 
 
@@ -45,20 +45,20 @@
 
             case FOLDER."user-register": // Chargement de la Class et lancement de la methode
                 require "php/Controller/UsersController.php"; // Charger le fichier php
-                $usersController = new UsersController();
-                $usersController->addUser();
+                $usersController = new UsersController(); // Creation d'une instance
+                $usersController->addUser(); // Lancement de la methode (POO)
             break;
 
             case FOLDER."single": // Chargement de la Class et lancement de la methode
                 require "php/Controller/ApiController.php"; // Charger le fichier php
-                $apiController = new ApiController();
-                $apiController->detailItem((int)$id);
+                $apiController = new ApiController(); // Creation d'une instance
+                $apiController->detailItem((int)$id); // Lancement de la methode (POO)
             break;
 
             case FOLDER."shop-list": // Chargement de la Class et lancement de la methode
                 require "php/Controller/ApiController.php"; // Charger le fichier php
-                $apiController = new ApiController();
-                $apiController->searchItem();
+                $apiController = new ApiController(); // Creation d'une instance
+                $apiController->searchItems(); // Lancement de la methode (POO)
             break;
 
             default: // Redirection vers la route 404
@@ -67,42 +67,41 @@
 
         }
 
-    } elseif($_SERVER["REQUEST_METHOD"] == "GET"){
+    }elseif($_SERVER["REQUEST_METHOD"] == "GET"){
 
-        switch($_SERVER["REQUEST_URI"]){
+        switch($_SERVER["REQUEST_URI"]):
+
             case FOLDER:
-                require "php/Controller/HomeController.php";
-                $home = new HomeController();
-                $home->home();
+                require "php/Controller/HomeController.php"; // Charger le fichier php
+                $home = new HomeController(); // Creation d'une instance
+                $home->home(); // Lancement de la methode (POO)
             break;
 
             case FOLDER."logout":                       
-                require "php/Controller/UsersController.php";
-                $usersController = new UsersController();
-                $usersController->logClientOut();
+                require "php/Controller/UsersController.php"; // Charger le fichier php
+                $usersController = new UsersController(); // Creation d'une instance
+                $usersController->logClientOut(); // Lancement de la methode (POO)
             break;
             
             case FOLDER."single":
-                require "php/Controller/ShopController.php";
-                $shop = new ShopController();
-                $shop->single((int)$id);
-            break;
-            
-            case FOLDER."404":
-                require "php/Controller/Controller.php";
-                Controller::show404();
-                
+                require "php/Controller/ShopController.php"; // Charger le fichier php
+                $shop = new ShopController(); // Creation d'une instance
+                $shop->single((int)$id); // Lancement de la methode (POO)
             break;
 
             case FOLDER."shop-list": // Chargement de la Class et lancement de la methode
                 require "php/Controller/ShopController.php"; // Charger le fichier php
-                $apiController = new ShopController();
-                $apiController->shopListView();
+                $shop = new ShopController(); // Creation d'une instance
+                $shop->shopListView(); // Lancement de la methode (POO)
+            break;
+            
+            case FOLDER."404":
+                require "php/Controller/Controller.php"; // Charger le fichier php
+                Controller::show_404(); // Creation d'une instance
             break;
 
             default:
-                header("Location: ".HOST.FOLDER."404");
-        }
-
+                header("Location: ".HOST.FOLDER."404"); // Lancement de la page 404
+        endswitch;
 
     }

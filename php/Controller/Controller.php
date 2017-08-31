@@ -1,10 +1,10 @@
 <?php
     class Controller{
-        
+
         protected $categories;
         protected $itemsModel;
 
-        public function __construct(){
+        public function  __construct(){
             require "php/Model/ItemsModel.php";
             $this->itemsModel = new ItemsModel();
             $this->categories = $this->itemsModel->listenerCategories();
@@ -28,7 +28,15 @@
             return 1;
         }
 
-        public static function show404(){
+
+
+        public static function show_404(){
             include("404.php");
         }
+
+
+        public function __destruct(){
+            
+        }
+        
     }

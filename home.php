@@ -311,7 +311,6 @@
         <a href="#" class="medium-button button-red">go shopping</a>
     </div>
 
-
     <!--
 	##############################
 	 - ACTIVATE THE BANNER HERE -
@@ -404,6 +403,10 @@
             });
             // END OF THE SECTION, HIDE MY ARROWS SEPERATLY FROM THE BULLETS
         });
+        $ = tpj
+        let typePage = 0;
     </script>
 
-<?php require ("footer.php"); ?>
+<script type="text/javascript" src="<?php echo HOST.FOLDER ?>js/Mike.js"></script>
+
+<?php require("footer.php"); ?>
